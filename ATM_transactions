@@ -1,0 +1,142 @@
+def checkpin():
+        try:
+            print("Enter PIN number:",end="")
+            upin=int(input())
+            if(upin==pin[i]):
+             return True
+            else:
+                 print("Incorrect Pin")
+                 print("END")
+        except ValueError:
+             print("Cannot accept pin")
+             print("Enter only Digits")                 
+def withdraw():
+            print("Enter the amount you want to withdraw:",end="")
+            amount=int(input())
+            
+            if(checkpin()==True):
+             if(amount<bal[i]):
+                bal[i]=bal[i]-amount
+                print("colect your amount")
+                print("Press 1 to check the balance")
+                print("Press 0 to exit")
+                cbal=int(input())
+                if(cbal==1):
+
+                    print("Balance:",bal[i])
+                    print("Thnak You")
+                else:
+                    print("Thank You")
+             else:
+                print("Insufficient Balance")
+            
+def deposit():
+         print("Enter the amount you want to deposit:",end="")
+         depamount=int(input())
+         
+         if(checkpin()==True):
+              bal[i]=bal[i]+depamount
+              print("Amount Deposited Successfully")
+              print("Balance:",bal[i])
+        
+def balance():
+         if(checkpin()==True):
+           print("The Avialable Balance in the account is:",bal[i])
+def strongpassword(newpass):
+    u=[0,0,0,0]
+    if(len(newpass)>=8):
+      for j in newpass:
+           if(j.islower()):
+                u[0]=1
+           elif(j.isupper()):
+              u[1]=1
+           elif(j.isdigit()):
+               u[2]=1
+           else:
+               u[3]=1    
+         
+      if(sum(u)==4):
+           return True   
+      else:
+           return False
+    else:
+           return False
+def changepassword():
+     print("Enter the current Password:",end='')
+     currpass=input()
+     if(currpass==password[i]):
+          while(1):
+           print("Enter new password:",end='')
+           newpass=input()
+           print("Confirm password:",end='')
+           cfmpass=input()
+           if(newpass==cfmpass):
+             if(strongpassword(newpass)==True):
+               password[i]=newpass
+               print("Password changed successfully")
+               break
+             else:
+                  print("Enter a strong password")
+           else:
+               print("Password did not match ")
+               print("Enter the password again")
+     else:
+          print("Incorrect Password")
+          print("END")
+def ATM(i):
+        flag=0
+        print("Enter Password:",end="")  
+        upassword=input() 
+        if(upassword in password[i] ):
+            flag=1
+        else:
+            print("Incorrect Password 2 more attempts left")
+            print("Enter password:",end="")
+            upassword=input()
+            if(upassword==password[i]):
+                flag=1
+                
+            else:
+                print("Incorrect Password 1 more attemp left")
+                print("Enter password:",end="")
+                upassword=input()
+                if(upassword==password[i]):
+                 flag=1
+                else:
+                    falg=0
+        if(flag==1):
+            print("1:Withdraw")
+            print("2:Deposit")
+            print("3:Balance")
+            print("4:Change Pasword")
+            print("ENTER YOUR CHOICE:",end="")
+            
+        if(flag==0):
+            print("Incorrect password Account Blocked")
+        while(1):
+            choice=int(input())
+            if(choice in [1,2,3,4]):
+                break
+            else:
+                print("Reenter your choice:",end="")
+        if(choice==1):
+            withdraw()
+        elif(choice==2):
+             deposit()
+        elif(choice==3):
+             balance()
+        elif(choice==4):
+             changepassword()
+user=["Tae","Jk","Suga","Rm"]
+password=["Taehyung11","Kokiee22","Yoongi33","Namjoon44"]
+pin=[3112,1997,9003,1994]
+bal=[20000,30000,40000,50000]
+print("Enter the username:",end="")
+username=input()
+if(username in user):
+        i=user.index(username)
+        ATM(i)
+else:
+        print("Username does not exist")
+        print("End")
+
